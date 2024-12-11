@@ -9,6 +9,7 @@ import routes from './routes';
 const { REACT_APP_ENV = 'dev' } = process.env;
 
 export default defineConfig({
+  favicons: ['/alluxio-favicon.svg'],
   /**
    * @name Enable hash mode
    * @description Make build products contain hash suffixes. Usually used for incremental releases and avoiding browser cache loading.
@@ -77,7 +78,7 @@ export default defineConfig({
    * @name layout plugin
    * @doc https://umijs.org/docs/max/layout-menu
    */
-  title: 'Ant Design Pro',
+  title: 'Alluxio',
   layout: {
     locale: true,
     ...defaultSettings,
@@ -107,7 +108,26 @@ export default defineConfig({
    * @description Includes babel-import-plugin
    * @doc https://umijs.org/docs/max/antd#antd
    */
-  antd: {},
+  antd: {
+    dark: true,
+    theme: {
+      "token": {
+        "colorBgBase": "#030021",
+        "colorLink": "#00e0ff",
+        "colorPrimary": "#186fdb",
+        "colorInfo": "#186fdb",
+        "colorText": "#ffffffd9",
+        "colorTextSecondary": "#ffffffb3",
+        "colorTextTertiary": "#ffffff99",
+        "colorTextQuaternary": "#ffffff66",
+        "colorBgElevated": "#186fdb",
+        "colorBgContainer": "#030021",
+        "colorBgMask": "#000000b8",
+        "colorBorder": "#2569b3",
+        "colorBorderSecondary": "#123a64"
+      },
+    },
+  },
   /**
    * @name request configuration
    * @description  Provides a unified network request and error handling solution based on axios and ahooks useRequest

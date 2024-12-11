@@ -13,6 +13,7 @@
           height: 100%;
           margin: 0;
           padding: 0;
+          background-color: #030021;
         }
         #root {
           background-repeat: no-repeat;
@@ -80,7 +81,7 @@
           display: block;
           width: 9px;
           height: 9px;
-          background-color: #1890ff;
+          background-color: #186fdb;
           border-radius: 100%;
           -webkit-transform: scale(0.75);
           -ms-transform: scale(0.75);
@@ -191,10 +192,10 @@
           </div>
         </div>
         <div class="loading-title">
-          正在加载资源
+          Loading Resources
         </div>
         <div class="loading-sub-title">
-          初次加载资源可能需要较多时间 请耐心等待
+          Initial loading of resources may take longer, please be patient.
         </div>
       </div>
     `;

@@ -7,7 +7,6 @@ const Settings: ProLayoutProps & {
   pwa?: boolean;
   logo?: string;
 } = {
-  navTheme: 'light',
   colorPrimary: '#030021',
   layout: 'mix',
   contentWidth: 'Fluid',
@@ -16,7 +15,7 @@ const Settings: ProLayoutProps & {
   colorWeak: false,
   title: ' ',
   pwa: true,
-  logo: 'https://cdn.prod.website-files.com/66d9c7ee21a87e61fe5d0e22/66e2f4d66a49922e299542b5_logo.svg',
+  logo: '/alluxio-logo.svg',
   iconfontUrl: '',
   token: {
     // See TS declaration, check docs, modify styles through token
