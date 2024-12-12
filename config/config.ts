@@ -124,7 +124,17 @@ export default defineConfig({
         "colorBgContainer": "#030021",
         "colorBgMask": "#000000b8",
         "colorBorder": "#2569b3",
-        "colorBorderSecondary": "#123a64"
+        "colorBorderSecondary": "#123a64",
+      },
+      "components": {
+        "Select": {
+          "optionSelectedBg": "rgb(4,78,169)"
+        },
+        
+        "Dropdown": {
+          "controlItemBgActive": "#033f8a",
+          "colorPrimary": "#ffffffd9",
+        }
       },
     },
   },
