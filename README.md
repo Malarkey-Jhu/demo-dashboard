@@ -13,7 +13,6 @@ pnpm install
 
 ## Provided Scripts
 
-Ant Design Pro provides some useful script to help you quick start and build with web project, code style check and test.
 
 Scripts provided in `package.json`. It's safe to modify or add additional script:
 
@@ -46,7 +45,3 @@ npm run lint:fix
 ```bash
 npm test
 ```
-
-## More
-
-You can view antd-pro document on [official website](https://pro.ant.design).
