@@ -8,7 +8,7 @@ import {
   LoginForm,
   ProFormText,
 } from '@ant-design/pro-components';
-import { FormattedMessage, Helmet, useIntl, useModel } from '@umijs/max';
+import { FormattedMessage, Helmet, useIntl, useModel, SelectLang } from '@umijs/max';
 import { Alert, message } from 'antd';
 import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
@@ -34,9 +34,10 @@ const useStyles = createStyles(({ token }) => {
       lineHeight: '42px',
       position: 'fixed',
       right: 16,
+      color: token.colorText,
       borderRadius: token.borderRadius,
       ':hover': {
-        backgroundColor: token.colorBgTextHover,
+        backgroundColor: '',
       },
     },
     container: {
@@ -69,15 +70,15 @@ const useStyles = createStyles(({ token }) => {
 });
 
 
-// const Lang = () => {
-//   const { styles } = useStyles();
+const Lang = () => {
+  const { styles } = useStyles();
 
-//   return (
-//     <div className={styles.lang} data-lang>
-//       {SelectLang && <SelectLang />}
-//     </div>
-//   );
-// };
+  return (
+    <div className={styles.lang} data-lang>
+      {SelectLang && <SelectLang />}
+    </div>
+  );
+};
 
 const LoginMessage: React.FC<{
   content: string;
@@ -152,7 +153,7 @@ const Login: React.FC = () => {
           - {Settings.title}
         </title>
       </Helmet>
-      {/* <Lang /> */}
+      <Lang />
       <div className={styles.blurOverlay} />
       <div
         style={{
