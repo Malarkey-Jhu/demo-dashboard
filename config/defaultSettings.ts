@@ -7,7 +7,7 @@ const Settings: ProLayoutProps & {
   pwa?: boolean;
   logo?: string;
 } = {
-  colorPrimary: '#030021',
+  // colorPrimary: '#030021',
   layout: 'mix',
   contentWidth: 'Fluid',
   fixedHeader: false,

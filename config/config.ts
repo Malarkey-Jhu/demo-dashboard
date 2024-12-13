@@ -120,11 +120,11 @@ export default defineConfig({
         "colorTextSecondary": "#ffffffb3",
         "colorTextTertiary": "#ffffff99",
         "colorTextQuaternary": "#ffffff66",
-        "colorBgElevated": "#186fdb",
+        "colorBgElevated": "rgb(16,91,182)",
         "colorBgContainer": "#030021",
         "colorBgMask": "#000000b8",
         "colorBorder": "#2569b3",
-        "colorBorderSecondary": "#123a64",
+        "colorBorderSecondary": "#123a64"
       },
       "components": {
         "Select": {
@@ -140,7 +140,17 @@ export default defineConfig({
           "activeBorderColor": "rgb(72,153,252)"
         },
         "Drawer": {
-          "colorBgElevated": "rgb(16,91,182)"
+          "colorBgElevated": "#0d3b73"
+        },
+        "Modal": {
+          "colorBgElevated": "#0d3b73"
+        },
+        "Button": {
+          "primaryShadow": "0 0px 0 rgba(5, 145, 255, 0.1)",
+          "defaultShadow": "0 0px 0 rgba(0, 0, 0, 0.02)",
+          "dangerShadow": "0 0px 0 rgba(255, 38, 5, 0.06)",
+          "textTextHoverColor": "#00e0ff",
+          "colorBgContainer": "rgb(255,255,255, 0)"
         }
       },
     },
