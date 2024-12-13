@@ -27,3 +27,10 @@ export type BasicListItemDataType = {
   content: string;
   members: Member[];
 };
+
+export type JobItemDataType = {
+  id: string;
+  startTime: string;
+  state: 'SUCCEEDED' | 'FAILED' | 'IN_PROGRESS';
+  type: 'Load' | 'Free' | 'Copy';
+};
