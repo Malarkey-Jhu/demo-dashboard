@@ -15,7 +15,7 @@ export const Question = () => {
         height: 26,
       }}
       onClick={() => {
-        window.open('https://pro.ant.design/docs/getting-started');
+        window.open('https://documentation.alluxio.io');
       }}
     >
       <QuestionCircleOutlined />
