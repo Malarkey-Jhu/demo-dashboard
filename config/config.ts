@@ -134,6 +134,13 @@ export default defineConfig({
         "Dropdown": {
           "controlItemBgActive": "#033f8a",
           "colorPrimary": "#ffffffd9",
+        },
+        "Input": {
+          "hoverBorderColor": "rgb(72,153,252)",
+          "activeBorderColor": "rgb(72,153,252)"
+        },
+        "Drawer": {
+          "colorBgElevated": "rgb(16,91,182)"
         }
       },
     },
