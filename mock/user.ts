@@ -23,14 +23,18 @@ const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION } = process.env;
 let access = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site' ? 'admin' : '';
 
 const getAccess = () => {
+  console.log(ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION, 'ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION')
   return access;
 };
+
+const FAKE_TOKEN = '1234567890';
 
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 export default {
   // 支持值为 Object 和 Array
   'GET /api/currentUser': (req: Request, res: Response) => {
-    if (!getAccess()) {
+    console.log(req.headers.authorization, 'req.headers.authorization');
+    if (!req.headers.authorization) {
       res.status(401).send({
         data: {
           isLogin: false,
@@ -44,7 +48,7 @@ export default {
     res.send({
       success: true,
       data: {
-        name: 'Serati Ma',
+        name: 'JJ',
         avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
         userid: '00000001',
         email: 'antdesign@alipay.com',
@@ -125,6 +129,7 @@ export default {
         status: 'ok',
         type,
         currentAuthority: 'admin',
+        token: FAKE_TOKEN,
       });
       access = 'admin';
       return;
@@ -134,6 +139,7 @@ export default {
         status: 'ok',
         type,
         currentAuthority: 'user',
+        token: FAKE_TOKEN,
       });
       access = 'user';
       return;
@@ -143,6 +149,7 @@ export default {
         status: 'ok',
         type,
         currentAuthority: 'admin',
+        token: FAKE_TOKEN,
       });
       access = 'admin';
       return;

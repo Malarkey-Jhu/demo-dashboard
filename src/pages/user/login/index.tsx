@@ -125,6 +125,7 @@ const Login: React.FC = () => {
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
         const urlParams = new URL(window.location.href).searchParams;
+        localStorage.setItem('token', msg.token || '');
         window.location.href = urlParams.get('redirect') || '/';
         return;
       }
