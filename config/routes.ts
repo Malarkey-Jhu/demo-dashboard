@@ -21,9 +21,42 @@ export default [
     ],
   },
   {
+    path: '/cluster',
+    name: 'cluster',
+    icon: 'dashboard',
+    component: './cluster',
+  },
+  {
+    path: '/metrics',
+    name: 'metrics',
+    icon: 'dashboard',
+    component: './metrics',
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    icon: 'dashboard',
+    component: './settings',
+  },
+ 
+  {
+    path: '/jobs',
+    name: 'jobs',
+    icon: 'dashboard',
+    component: './jobs',
+  },
+
+  {
+    path: '/license',
+    name: 'license',
+    icon: 'KeyOutlined',
+    component: './license',
+  },
+  {
     path: '/dashboard',
     name: 'dashboard',
     icon: 'dashboard',
+    hideInMenu: true,
     routes: [
       {
         path: '/dashboard',
@@ -79,32 +112,32 @@ export default [
       },
     ],
   },
-  {
-    name: 'account',
-    icon: 'user',
-    path: '/account',
-    routes: [
-      {
-        path: '/account',
-        redirect: '/account/center',
-      },
-      {
-        name: 'center',
-        icon: 'smile',
-        path: '/account/center',
-        component: './account/center',
-      },
-      {
-        name: 'settings',
-        icon: 'smile',
-        path: '/account/settings',
-        component: './account/settings',
-      },
-    ],
-  },
+  // {
+  //   name: 'account',
+  //   icon: 'user',
+  //   path: '/account',
+  //   routes: [
+  //     {
+  //       path: '/account',
+  //       redirect: '/account/center',
+  //     },
+  //     {
+  //       name: 'center',
+  //       icon: 'smile',
+  //       path: '/account/center',
+  //       component: './account/center',
+  //     },
+  //     {
+  //       name: 'settings',
+  //       icon: 'smile',
+  //       path: '/account/settings',
+  //       component: './account/settings',
+  //     },
+  //   ],
+  // },
   {
     path: '/',
-    redirect: '/dashboard/analysis',
+    redirect: '/cluster',
   },
   {
     component: '404',
