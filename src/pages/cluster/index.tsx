@@ -168,7 +168,6 @@ const resourceLimitations: DescriptionsProps['items'] = [
   }
 ];
 
-
 const topColResponsiveProps = {
   xs: 24,
   sm: 12,
@@ -179,8 +178,6 @@ const topColResponsiveProps = {
     marginBottom: 24,
   },
 };
-
-
 
 const Cluster = () => {
 
@@ -195,7 +192,7 @@ const Cluster = () => {
             bordered={false}
             title="Status"
             action={
-              <Tooltip title="指标说明">
+              <Tooltip title="Info">
                 <InfoCircleOutlined />
               </Tooltip>
             }
@@ -212,7 +209,7 @@ const Cluster = () => {
             bordered={false}
             title="Running Workers"
             action={
-              <Tooltip title="指标说明">
+              <Tooltip title="Info">
                 <InfoCircleOutlined />
               </Tooltip>
             }
@@ -229,7 +226,7 @@ const Cluster = () => {
             bordered={false}
             title="Workers Usage"
             action={
-              <Tooltip title="指标说明">
+              <Tooltip title="Info">
                 <InfoCircleOutlined />
               </Tooltip>
             }
@@ -247,10 +244,6 @@ const Cluster = () => {
 
        <Descriptions title="General Info" layout="vertical"  items={generalDescriptions} style={{padding: 20}}/>
        <Descriptions title="Resource Limitations" layout="vertical"  items={resourceLimitations} style={{padding: 20}}/>
-
-
-
-
     </GridContent>;
 };
 

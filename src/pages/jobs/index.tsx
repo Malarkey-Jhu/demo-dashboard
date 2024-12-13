@@ -6,19 +6,41 @@ import {
   FooterToolbar,
   ProDescriptions,
   ProTable,
+  useToken,
 } from '@ant-design/pro-components';
-import { Button, Drawer, Space } from 'antd';
+import { Button, Drawer, Modal, Space } from 'antd';
 import React, { useRef, useState } from 'react';
 import type { TableListItem, TableListPagination } from './data';
 import {  getFreeJobDetail, getLoadJobDetail, jobs } from './service';
+import { InfoCircleFilled } from '@ant-design/icons';
 
 
 
 const TableList: React.FC = () => {
+  const {token} = useToken();
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
   const [currentRow, setCurrentRow] = useState<TableListItem>();
   const [selectedRowsState, setSelectedRows] = useState<TableListItem[]>([]);
+  const [operation, setOperation] = useState<string>('');
+
+  const isModalOpen = operation !== '';
+
+  const clickOperation = (operation: string, record: TableListItem) => {
+    setOperation(operation);
+    setCurrentRow(record);
+  }
+
+  const handleOk = () => {
+    setCurrentRow(undefined);
+    setOperation('');
+  };
+
+  const handleCancel = () => {
+    setCurrentRow(undefined);
+    setOperation('');
+  };
+
 
   const columns: ProColumns<TableListItem>[] = [
     {
@@ -86,15 +108,13 @@ const TableList: React.FC = () => {
       render: (_, record) => {
         return (
         <Space>
-          <a >Restart</a>
-          {record.state !== 'FAILED' && <a >Stop</a>}
+          <a onClick={() => clickOperation('RESTART', record)}>Restart</a>
+          {record.state !== 'FAILED' && <a onClick={() => clickOperation('STOP', record)}>Stop</a>}
         </Space>
         )
       },
     },
   ];
-
-  console.log(currentRow, 'currentRow')
 
   return (
     <>
@@ -228,6 +248,27 @@ const TableList: React.FC = () => {
           )
         }
       </Drawer>
+
+      <Modal title={
+        <div>
+          <InfoCircleFilled style={{color: token.colorWarning}} />
+          <span style={{marginLeft: 10}}>Warning</span>
+        </div>
+      } open={isModalOpen} onOk={handleOk} onCancel={handleCancel} 
+      footer={<>
+        <Button type="primary" onClick={handleOk}>
+          OK
+        </Button>
+        <Button onClick={handleCancel}>
+          Cancel
+        </Button>
+      </>}
+      >
+        <div>
+          <div>Are you sure you want to {operation} the job</div>
+          <div> {currentRow?.id}</div>
+        </div>
+      </Modal>
     </>
   );
 };
