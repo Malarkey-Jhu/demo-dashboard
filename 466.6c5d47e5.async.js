@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkalluxio_dashboard=self.webpackChunkalluxio_dashboard||[]).push([[466],{56466:function(s,u,t){t.r(u),t.d(u,{default:function(){return o}});var E=t(50959),n=t(72518),a=t(11527);function o(){var l=(0,n.useOutletContext)();return(0,a.jsx)(n.Outlet,{context:l})}}}]);
