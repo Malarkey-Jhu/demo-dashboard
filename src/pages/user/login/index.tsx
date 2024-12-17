@@ -221,7 +221,7 @@ const Login: React.FC = () => {
                 }}
                 placeholder={intl.formatMessage({
                   id: 'pages.login.password.placeholder',
-                  defaultMessage: 'password: ant.design',
+                  defaultMessage: 'password: admin',
                 })}
                 rules={[
                   {

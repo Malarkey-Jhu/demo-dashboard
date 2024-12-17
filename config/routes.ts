@@ -22,33 +22,33 @@ export default [
   },
   {
     path: '/cluster',
-    name: 'cluster',
+    name: 'Cluster',
     icon: 'dashboard',
     component: './cluster',
   },
   {
     path: '/metrics',
-    name: 'metrics',
+    name: 'Metrics',
     icon: 'dashboard',
     component: './metrics',
   },
   {
     path: '/settings',
-    name: 'settings',
+    name: 'Settings',
     icon: 'dashboard',
     component: './settings',
   },
  
   {
     path: '/jobs',
-    name: 'jobs',
+    name: 'Jobs',
     icon: 'dashboard',
     component: './jobs',
   },
 
   {
     path: '/license',
-    name: 'license',
+    name: 'License',
     icon: 'KeyOutlined',
     component: './license',
   },

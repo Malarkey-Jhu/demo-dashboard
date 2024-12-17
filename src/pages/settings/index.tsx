@@ -1,8 +1,9 @@
 import {  InfoCircleOutlined } from "@ant-design/icons";
 import { Button, Space, Table, Typography } from "antd";
-import ActionQuotaModal, { FieldType, ResourceAction } from "./quota/ActionModal";
+import ActionQuotaModal, { FieldType as QuotaFieldType, ResourceAction } from "./quota/ActionModal";
+import ActionTTLModal, { FieldType as TTLFieldType } from "./ttl/ActionModal";
 import { useRef, useState } from "react";
-import { TableListItem } from "./data.t";
+import { QuotaItemDataType, TTLItemDataType } from "./data.t";
 import { ProTable, ActionType, ProColumns } from "@ant-design/pro-components";
 import { quota } from "./service";
 
@@ -64,28 +65,48 @@ const ttlDataSource = [
 const Settings = () => {
 
   const actionRef = useRef<ActionType>();
-  const [actionType, setActionType] = useState<ResourceAction | null>(null);
-  const [initialValues, setInitialValues] = useState<FieldType>({path: '', quotaBytes: 0});
+  const [quotaActionType, setQuotaActionType] = useState<ResourceAction | null>(null);
+  const [ttlActionType, setTTLActionType] = useState<ResourceAction | null>(null);
+  const [quotaInitialValues, setQuotaInitialValues] = useState<QuotaFieldType>({path: '', quotaBytes: 0});
+  const [ttlInitialValues, setTTLInitialValues] = useState<TTLFieldType>({path: '', ttl: 0});
 
-  const clickAction = (action: ResourceAction, record: TableListItem) => {
-    setActionType(action);
-    setInitialValues(record);
+  const clickQuotaAction = (action: ResourceAction, record: QuotaItemDataType) => {
+    setQuotaActionType(action);
+    setQuotaInitialValues(record);
   }
 
-  const handleOk = () => {
-    setActionType(null);
+  const clickTTLAction = (action: ResourceAction, record: TTLItemDataType) => {
+    setTTLActionType(action);
+    setTTLInitialValues(record);
+  }
+
+  const handleOk = (type: 'quota' | 'ttl') => {
+    if (type === 'quota') {
+      setQuotaActionType(null);
+    } else {
+      setTTLActionType(null);
+    }
   };
 
-  const handleCancel = () => {
-    setActionType(null);
+  const handleCancel = (type: 'quota' | 'ttl') => {
+    if (type === 'quota') {
+      setQuotaActionType(null);
+    } else {
+      setTTLActionType(null);
+    }
   };
 
   const handleCreateQuotaClick = () => {
-    setActionType('CREATE');
-    setInitialValues({path: '', quotaBytes: 0});
+    setQuotaActionType('CREATE');
+    setQuotaInitialValues({path: '', quotaBytes: 0});
   }
 
-  const quotaColumns: ProColumns<TableListItem>[] = [
+  const handleCreateTTLClick = () => {
+    setTTLActionType('CREATE');
+    setTTLInitialValues({path: '', ttl: 0});
+  }
+
+  const quotaColumns: ProColumns<QuotaItemDataType>[] = [
     {
       title: 'Path',
       dataIndex: 'path',
@@ -100,7 +121,7 @@ const Settings = () => {
       title: 'Quota/Used (MB)',
       dataIndex: 'quotaBytes',
       key: 'quotaBytes',
-      render: (dom, record: TableListItem ) => {
+      render: (dom, record: QuotaItemDataType ) => {
         return (
           <>
             {(record.usedBytes / 1024 / 1024).toFixed(2)} MB <br/> {(record.usedBytes / 1024 / 1024).toFixed(2)} MB
@@ -112,7 +133,7 @@ const Settings = () => {
       title: 'Reserved (MB)',
       dataIndex: 'reservedBytes',
       key: 'reservedBytes',
-      render: (dom, record: TableListItem) => {
+      render: (dom, record: QuotaItemDataType) => {
         return (
           <>
             {(record.reservedBytes / 1024 / 1024).toFixed(2)} MB
@@ -124,10 +145,10 @@ const Settings = () => {
       title: 'Action',
       key: 'action',
       width: '200px',
-      render: (dom, record: TableListItem) => (
+      render: (dom, record: QuotaItemDataType) => (
         <Space size="middle">
-          <a onClick={() => clickAction('UPDATE', record)}>Edit</a>
-          <a onClick={() => clickAction('DELETE', record)}>Delete</a>
+          <a onClick={() => clickQuotaAction('UPDATE', record)}>Edit</a>
+          <a onClick={() => clickQuotaAction('DELETE', record)}>Delete</a>
         </Space>
       ),
     },
@@ -149,16 +170,14 @@ const Settings = () => {
       title: 'Action',
       key: 'action',
       width: '200px',
-      render: () => (
+      render: (dom, record: TTLItemDataType) => (
         <Space size="middle">
-          <a>Edit</a>
-          <a>Delete</a>
+          <a onClick={() => clickTTLAction('UPDATE', record)}>Edit</a>
+          <a onClick={() => clickTTLAction('DELETE', record)}>Delete</a>
         </Space>
       ),
     },
   ];
-
-  
 
   return <div style={{padding: 24}}>
     
@@ -176,7 +195,7 @@ const Settings = () => {
 
     <br />
     <br />
-    <ProTable<TableListItem>
+    <ProTable<QuotaItemDataType>
         actionRef={actionRef}
         rowKey="path"
         search={false}
@@ -201,7 +220,7 @@ const Settings = () => {
       />
 
 
-    <ActionQuotaModal isModalOpen={actionType !== null} handleOk={handleOk} handleCancel={handleCancel} actionType={actionType || 'CREATE'} initialValues={initialValues}/>
+    <ActionQuotaModal isModalOpen={quotaActionType !== null} handleOk={() => handleOk('quota')} handleCancel={() => handleCancel('quota')} actionType={quotaActionType || 'CREATE'} initialValues={quotaInitialValues}/>
 
     <br />
     <br />
@@ -215,9 +234,12 @@ const Settings = () => {
       </div>
       <Typography.Paragraph>All TTL policy definitions in Alluxio system</Typography.Paragraph>
       </div>
-      <Button type="default" style={{float: 'right', marginBottom: 16}}>Create TTL</Button>
+      <Button onClick={handleCreateTTLClick} type="default" style={{float: 'right', marginBottom: 16}}>Create TTL</Button>
     </div>
     <Table dataSource={ttlDataSource} columns={ttlColumns}  pagination={false}/>
+
+
+    <ActionTTLModal isModalOpen={ttlActionType !== null} handleOk={() => handleOk('ttl')} handleCancel={() => handleCancel('ttl')} actionType={ttlActionType || 'CREATE'} initialValues={ttlInitialValues}/>  
 
   </div>;
 };

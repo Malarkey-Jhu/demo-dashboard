@@ -1,4 +1,4 @@
-import {  Col, Descriptions, Progress, Row, Table, Tooltip } from 'antd';
+import {  Col, Descriptions, Divider, Progress, Row, Table, Tooltip } from 'antd';
 import type { DescriptionsProps } from 'antd';
 import { GridContent } from "@ant-design/pro-components";
 import { Field } from './components/Charts';
@@ -242,8 +242,8 @@ const Cluster = () => {
           </Col>
         </Row>
 
-       <Descriptions title="General Info" layout="vertical"  items={generalDescriptions} style={{padding: 20}}/>
-       <Descriptions title="Resource Limitations" layout="vertical"  items={resourceLimitations} style={{padding: 20}}/>
+       <Descriptions title={<><h2>General Info</h2><Divider /></>} layout="vertical"  items={generalDescriptions} style={{padding: 20}}/>
+       <Descriptions title={<><h2>Resource Limitations</h2><Divider /></>} layout="vertical"  items={resourceLimitations} style={{padding: 20}}/>
     </GridContent>;
 };
 

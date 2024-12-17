@@ -14,7 +14,7 @@ function genQuota(count: number): QuotaItemDataType[] {
 
 
 function getQuota(req: Request, res: Response) {
-  const quota = genQuota(10);
+  const quota = genQuota(5);
   
   return res.json({
     data: quota,
